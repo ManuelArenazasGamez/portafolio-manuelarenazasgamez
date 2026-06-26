@@ -1,21 +1,9 @@
 import type { NextConfig } from "next";
 
-const basePath = process.env.NODE_ENV === "production" ? "/Resume-Nextjs" : "";
-
 const nextConfig: NextConfig = {
-  output: "export",
-  basePath,
-  assetPrefix: basePath,
+  // Mantenemos esto porque algunas plantillas lo necesitan para cargar las fotos correctamente
   images: {
     unoptimized: true,
-  },
-  trailingSlash: true,
-  // @ts-ignore
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  env: {
-    NEXT_PUBLIC_BASE_PATH: basePath,
   },
 };
 
