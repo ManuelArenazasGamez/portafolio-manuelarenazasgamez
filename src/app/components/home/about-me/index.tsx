@@ -97,7 +97,7 @@ const AboutMe = () => {
                       <p className="text-base xl:text-xl text-black font-semibold">Idiomas</p>
                     </div>
                     <div className="flex flex-wrap items-center gap-2.5">
-                      {["Inglés", "Español (Nativo)"].map((lang) => (
+                      {["Inglés B1", "Español (Nativo)"].map((lang) => (
                         <p
                           key={lang}
                           className="bg-white py-2 md:py-3.5 px-4 md:px-5 w-fit rounded-full text-sm md:text-base xl:text-lg border border-gray-200"
