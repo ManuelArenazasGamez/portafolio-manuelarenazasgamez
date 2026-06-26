@@ -17,7 +17,7 @@ const index = () => {
                 </h1>
                 <div className="wave hidden sm:block">
                   <Image
-                    src={getImgPath("/images/home/banner/wave-icon.svg")}
+                    src={getImgPath("/images/home/banner/wave-icon2.svg")}
                     alt="wave-icon"
                     width={40}
                     height={40}

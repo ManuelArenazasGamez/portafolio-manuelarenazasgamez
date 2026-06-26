@@ -39,7 +39,7 @@ const LatestWork = () => {
           <div className="py-16 xl:py-32 ">
             <div className="flex items-center justify-between gap-2 border-b border-black pb-7 mb-9 md:mb-16">
               <h2>Proyectos Destacados</h2>
-              <p className="text-xl text-orange-500">( 04 )</p>
+              <p className="text-xl text-blue-500">( 04 )</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6 xl:gap-y-12">
               {localData.map((value, index) => {
@@ -76,7 +76,7 @@ const LatestWork = () => {
                               width="64"
                               height="64"
                               rx="32"
-                              fill="#FE4300"
+                              fill="#2563EB"
                             />
                             <path
                               d="M25.6667 25.3333H39M39 25.3333V38.6666M39 25.3333L25.6667 38.6666"

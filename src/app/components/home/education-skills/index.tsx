@@ -19,10 +19,10 @@ const EducationSkills = () => {
     ],
     skills: [
       { name: "Redes (Cisco, VLANs)", rating: 5, icon: "/images/home/education-skill/network.svg" },
-      { name: "Ciberseguridad", rating: 4, icon: "/images/home/education-skill/security.svg" },
+      { name: "Ciberseguridad", rating: 5, icon: "/images/home/education-skill/security.svg" },
       { name: "Linux (Fedora / Kali)", rating: 5, icon: "/images/home/education-skill/linux.svg" },
       { name: "Hardware & Soporte", rating: 5, icon: "/images/home/education-skill/hardware.svg" },
-      { name: "Python & Scripting", rating: 4, icon: "/images/home/education-skill/python.svg" },
+      { name: "Python & Scripting", rating: 5, icon: "/images/home/education-skill/python.svg" },
       { name: "Wireshark / Nmap", rating: 5, icon: "/images/home/education-skill/analysis.svg" },
     ],
   };
@@ -41,7 +41,7 @@ const EducationSkills = () => {
           <div className="relative z-10 py-16 md:py-32">
             <div className="flex items-center justify-between gap-2 border-b border-black pb-7 mb-9 xl:mb-16">
               <h2>Education & Skills</h2>
-              <p className="text-xl text-orange-500">( 03 )</p>
+              <p className="text-xl text-blue-500">( 03 )</p>
             </div>
             
             <div className="flex flex-col lg:flex-row items-start gap-10 xl:gap-20">
@@ -69,7 +69,7 @@ const EducationSkills = () => {
                   return (
                     <div
                       key={index}
-                      className="p-4 xl:p-6 border border-softGray rounded-lg flex flex-col gap-5 sm:gap-10 items-center justify-between hover:border-orange-500 transition-colors"
+                      className="p-4 xl:p-6 border border-softGray rounded-lg flex flex-col gap-5 sm:gap-10 items-center justify-between hover:border-blue-500 transition-colors"
                     >
                       <div className="flex flex-col items-center gap-5 text-center">
                         {/* Ver nota abajo sobre estos iconos */}
@@ -97,7 +97,7 @@ const EducationSkills = () => {
                               width="9"
                               height="9"
                               rx="4.5"
-                              fill={i < value.rating ? "#FE4300" : "#C0D8E0"}
+                              fill={i < value.rating ? "#2563EB" : "#C0D8E0"}
                             />
                           </svg>
                         ))}

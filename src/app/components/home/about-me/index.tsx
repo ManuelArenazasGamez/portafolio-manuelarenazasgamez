@@ -89,7 +89,7 @@ const AboutMe = () => {
                   <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                     <div className="flex items-center gap-3.5 whitespace-nowrap min-w-[140px]">
                       <Image
-                        src={getImgPath("/images/icon/lang-icon.svg")}
+                        src={getImgPath("/images/icon/lang-icon2.svg")}
                         alt="lang-icon"
                         width={30}
                         height={30}
