@@ -1,26 +1,36 @@
 "use client";
-import { getDataPath, getImgPath } from "@/utils/image";
+import { getImgPath } from "@/utils/image";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 const LatestWork = () => {
-  const [workData, setWorkData] = useState<any>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(getDataPath("/data/work-data.json"));
-        if (!res.ok) throw new Error("Failed to fetch");
-        const data = await res.json();
-        setWorkData(data?.workData);
-      } catch (error) {
-        console.error("Error fetching services:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
+  // Datos locales para evitar el fetch y asegurar que cargue al instante
+  const localData = [
+    {
+      title: "Mantenimiento de Infraestructura TI",
+      client: "AutoZone Hub",
+      image: "/images/work/work-img-1.jpg", // Asegúrate de agregar estas imágenes
+      slug: "#"
+    },
+    {
+      title: "Diseño de Red, VLANs y CCTV PoE",
+      client: "Proyecto Independiente",
+      image: "/images/work/work-img-2.jpg",
+      slug: "#"
+    },
+    {
+      title: "Administración de Redes y Soporte",
+      client: "Centro de Cómputo ITM",
+      image: "/images/work/work-img-3.jpg",
+      slug: "#"
+    },
+    {
+      title: "Visión Artificial con MediaPipe",
+      client: "Desarrollo en Python (OpenCV)",
+      image: "/images/work/work-img-4.jpg",
+      slug: "#"
+    }
+  ];
 
   return (
     <section>
@@ -28,27 +38,29 @@ const LatestWork = () => {
         <div className="container">
           <div className="py-16 xl:py-32 ">
             <div className="flex items-center justify-between gap-2 border-b border-black pb-7 mb-9 md:mb-16">
-              <h2>Latest Works</h2>
+              <h2>Proyectos Destacados</h2>
               <p className="text-xl text-orange-500">( 04 )</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6 xl:gap-y-12">
-              {workData?.map((value: any, index: any) => {
+              {localData.map((value, index) => {
                 return (
                   <div
                     key={index}
                     className="group flex flex-col gap-3 xl:gap-6"
                   >
                     <div className="relative">
+                      {/* Imagen del proyecto */}
                       <Image
-                        src={getImgPath(value?.image)}
-                        alt="image"
+                        src={getImgPath(value.image)}
+                        alt={value.title}
                         width={570}
                         height={414}
                         className="rounded-lg w-full h-full object-cover"
                       />
+                      
+                      {/* Overlay naranja al pasar el mouse */}
                       <Link
-                        onClick={(e) => e.preventDefault()}
-                        href={"#!"}
+                        href={value.slug}
                         className="absolute top-0 left-0 backdrop-blur-xs bg-primary/15 w-full h-full hidden group-hover:flex rounded-lg"
                       >
                         <span className="flex justify-center items-center p-5 w-full">
@@ -77,11 +89,13 @@ const LatestWork = () => {
                         </span>
                       </Link>
                     </div>
+                    
                     <div className="flex flex-col gap-0 xl:gap-2">
                       <div className="flex items-center justify-between">
-                        <Link href={`${value.slug}`}>
-                          <h5>{value?.title}</h5>
+                        <Link href={value.slug}>
+                          <h5>{value.title}</h5>
                         </Link>
+                        {/* Asegúrate de que el icono de la flecha exista en tu carpeta public */}
                         <Image
                           src={getImgPath("/images/icon/right-arrow-icon.svg")}
                           alt="right-arrow-icon"
@@ -89,7 +103,7 @@ const LatestWork = () => {
                           height={30}
                         />
                       </div>
-                      <p>Client: {value?.client}</p>
+                      <p className="text-secondary font-medium">Entorno: {value.client}</p>
                     </div>
                   </div>
                 );

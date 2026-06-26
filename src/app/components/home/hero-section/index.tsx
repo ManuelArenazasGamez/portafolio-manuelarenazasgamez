@@ -3,48 +3,56 @@ import Image from "next/image";
 
 const index = () => {
   return (
-    <section className="relative hero-section overflow-hidden pt-35 md:pt-40 pb-12 lg:pb-30 xl:pt-52">
+    <section className="relative hero-section overflow-hidden pt-20 md:pt-32 pb-12 lg:pb-30 xl:pt-40">
       <div className="container">
-        <div className="lg:flex grid grid-cols-1 sm:grid-cols-2 gap-7 md:gap-4 items-center">
-          <div className="flex flex-col gap-4 md:gap-7 max-w-2xl">
+        {/* Aquí está el cambio: una cuadrícula de 2 columnas */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-8 items-center">
+          
+          {/* Columna Izquierda: Texto */}
+          <div className="flex flex-col gap-4 md:gap-7">
             <div>
-              <div className="flex items-center gap-8">
-                <h1>I'm Sruthi</h1>
-                <div className="wave">
+              <div className="flex items-center gap-4">
+                <h1 className="text-4xl md:text-5xl font-extrabold text-black">
+                  Manuel Arenazas Gámez
+                </h1>
+                <div className="wave hidden sm:block">
                   <Image
                     src={getImgPath("/images/home/banner/wave-icon.svg")}
                     alt="wave-icon"
-                    width={62}
-                    height={62}
-                    className=""
+                    width={40}
+                    height={40}
                   />
                 </div>
               </div>
-              <h1>UI/UX Designer</h1>
+              <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mt-4">
+                Ingeniero en Sistemas Computacionales
+              </h2>
+              <h3 className="text-lg md:text-xl text-primary font-medium mt-2">
+                Cybersecurity | IT Infrastructure & Services Security
+              </h3>
             </div>
-            <p className="text-secondary font-normal max-w-md xl:max-w-xl">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. variations of passages of Lorem Ipsum available, but the
-              majority have suffered alteration
+            
+            <p className="text-secondary font-normal max-w-xl text-base md:text-lg">
+              Egresado del Instituto Tecnológico de Morelia. Especializado en la 
+              administración de redes, mantenimiento de activos tecnológicos y 
+              estrategias de ciberseguridad para garantizar operaciones estables y seguras.
             </p>
           </div>
-          <Image
-            src={getImgPath("/images/home/banner/banner-img.png")}
-            alt="banner-img"
-            width={685}
-            height={650}
-            className="block lg:hidden"
-          />
+
+          {/* Columna Derecha: Imagen Transparente */}
+          {/* Al estar en un grid, la foto se queda en su lado y no invade el texto */}
+          <div className="relative w-full flex justify-center lg:justify-end">
+            <Image
+              src={getImgPath("/images/home/banner/banner-img.png")}
+              alt="Manuel Arenazas - Perfil"
+              width={600}
+              height={550}
+              // Quité 'object-cover' y puse 'object-contain' para que no corte tu imagen transparente
+              className="object-contain"
+            />
+          </div>
+          
         </div>
-      </div>
-      <div className="absolute right-0 top-0 hidden h-auto w-1/2 lg:block 2xl:h-171.5 2xl:w-187.5">
-        <Image
-          src={getImgPath("/images/home/banner/banner-img.png")}
-          alt="banner-img"
-          width={685}
-          height={650}
-          className=" absolute right-0 top-0 z-1"
-        />
       </div>
     </section>
   );

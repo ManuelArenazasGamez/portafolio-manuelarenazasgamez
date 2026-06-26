@@ -1,34 +1,38 @@
+
+
 "use client";
-import { getDataPath, getImgPath } from "@/utils/image";
+import { getImgPath } from "@/utils/image";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 
 const EducationSkills = () => {
-  const [educationData, setEductionData] = useState<any>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(getDataPath("/data/page-data.json"));
-        if (!res.ok) throw new Error("Failed to fetch");
-        const data = await res.json();
-        setEductionData(data?.educationData);
-      } catch (error) {
-        console.error("Error fetching services:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
+  // Integramos tus datos directamente aquí. Es más seguro, rápido y fácil de editar.
+  const localData = {
+    education: [
+      {
+        title: "Ingeniería en Sistemas Computacionales",
+        description: "Instituto Tecnológico de Morelia . Especialidad en Seguridad en Infraestructura de Servicios.",
+      },
+      {
+        title: "Carrera Técnica en Programación",
+        description: "CECYTE 12 Morelia. Fundamentos de lógica computacional y arquitectura de hardware.",
+      },
+    ],
+    skills: [
+      { name: "Redes (Cisco, VLANs)", rating: 5, icon: "/images/home/education-skill/network.svg" },
+      { name: "Ciberseguridad", rating: 4, icon: "/images/home/education-skill/security.svg" },
+      { name: "Linux (Fedora / Kali)", rating: 5, icon: "/images/home/education-skill/linux.svg" },
+      { name: "Hardware & Soporte", rating: 5, icon: "/images/home/education-skill/hardware.svg" },
+      { name: "Python & Scripting", rating: 4, icon: "/images/home/education-skill/python.svg" },
+      { name: "Wireshark / Nmap", rating: 5, icon: "/images/home/education-skill/analysis.svg" },
+    ],
+  };
 
   return (
     <section>
       <div className="border-t border-softGray overflow-hidden">
         <div className="container relative z-10">
           <Image
-            src={getImgPath(
-              "/images/home/education-skill/edu-skill-vector.svg"
-            )}
+            src={getImgPath("/images/home/education-skill/edu-skill-vector.svg")}
             alt="vector"
             width={260}
             height={170}
@@ -39,38 +43,46 @@ const EducationSkills = () => {
               <h2>Education & Skills</h2>
               <p className="text-xl text-orange-500">( 03 )</p>
             </div>
-            <div className="flex flex-col lg:flex-row items-center gap-10 xl:gap-20">
-              <div className="w-full lg:max-w-md flex flex-col gap-0 xl:gap-8">
-                {educationData?.education?.map((value: any, index: any) => {
+            
+            <div className="flex flex-col lg:flex-row items-start gap-10 xl:gap-20">
+              
+              {/* Sección de Educación */}
+              <div className="w-full lg:max-w-md flex flex-col gap-8 xl:gap-12">
+                {localData.education.map((value, index) => {
                   return (
                     <div key={index} className="flex items-start gap-6">
-                      <div className="no-print mt-2.5 w-3.5 h-3.5 rounded-full border-1 bg-white flex items-center justify-center border-black">
+                      <div className="no-print mt-2.5 w-3.5 h-3.5 rounded-full border-1 bg-white flex items-center justify-center border-black shrink-0">
                         <div className="w-1.5 h-1.5 rounded-full bg-black"></div>
                       </div>
                       <div className="flex-1 flex flex-col gap-2">
-                        <h5>{value?.title}</h5>
-                        <p className="font-normal">{value?.description}</p>
+                        <h5>{value.title}</h5>
+                        <p className="font-normal text-secondary">{value.description}</p>
                       </div>
                     </div>
                   );
                 })}
               </div>
+
+              {/* Sección de Habilidades (Grid) */}
               <div className="grid grid-cols-2 xs:grid-cols-3 gap-5 xl:gap-7 w-full">
-                {educationData?.skills?.map((value: any, index: any) => {
+                {localData.skills.map((value, index) => {
                   return (
                     <div
                       key={index}
-                      className="p-4 xl:p-6 border border-softGray rounded-lg flex flex-col gap-5 sm:gap-10 items-center justify-between"
+                      className="p-4 xl:p-6 border border-softGray rounded-lg flex flex-col gap-5 sm:gap-10 items-center justify-between hover:border-orange-500 transition-colors"
                     >
-                      <div className="flex flex-col items-center gap-5">
+                      <div className="flex flex-col items-center gap-5 text-center">
+                        {/* Ver nota abajo sobre estos iconos */}
                         <Image
-                          src={getImgPath(value?.icon)}
-                          alt="icon"
-                          width={70}
-                          height={70}
+                          src={getImgPath(value.icon)}
+                          alt={value.name}
+                          width={60}
+                          height={60}
                         />
-                        <p className="text-black font-normal">{value?.name}</p>
+                        <p className="text-black font-medium text-sm sm:text-base">{value.name}</p>
                       </div>
+                      
+                      {/* Sistema de calificación por puntos */}
                       <div className="flex gap-1">
                         {[...Array(5)].map((_, i) => (
                           <svg
@@ -85,7 +97,7 @@ const EducationSkills = () => {
                               width="9"
                               height="9"
                               rx="4.5"
-                              fill={i < value?.rating ? "#FE4300" : "#C0D8E0"}
+                              fill={i < value.rating ? "#FE4300" : "#C0D8E0"}
                             />
                           </svg>
                         ))}
@@ -94,6 +106,7 @@ const EducationSkills = () => {
                   );
                 })}
               </div>
+
             </div>
           </div>
         </div>
